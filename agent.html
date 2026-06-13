@@ -380,7 +380,7 @@ function parseRows() {
     conv:       getVal(row, ['конв','conv','leads','sales']),
     roi:        getVal(row, ['roi']),
     revenue:    getVal(row, ['доход','revenue','income'])
-  }));
+  })).filter(r => r.id && r.id.trim() !== '');
 }
 
 function renderStats() {
