@@ -190,16 +190,19 @@ let csvData = [];
 let chatHistory = [];
 let tokens = []; // [{name, value, accountId, status}]
 let accToToken = {}; // campaignId -> tokenIndex
-let accResolved = {}; // accountId -> tokenIndex (resolved via FB API)
+let accResolved = {}; // accountId -> tokenIndex
+let killedAds = {}; // adId -> {killedAt, campaignId} — память о выключенных (resolved via FB API)
 
 function loadTokensFromStorage() {
   try { tokens = JSON.parse(localStorage.getItem('mb_tokens') || '[]'); } catch(e) { tokens = []; }
   try { accResolved = JSON.parse(localStorage.getItem('mb_acc_resolved') || '{}'); } catch(e) { accResolved = {}; }
+  try { killedAds = JSON.parse(localStorage.getItem('mb_killed_ads') || '{}'); } catch(e) { killedAds = {}; }
   updateTokenBadge();
 }
 function saveTokensToStorage() {
   localStorage.setItem('mb_tokens', JSON.stringify(tokens.map(t => ({name:t.name, value:t.value, accountId:t.accountId, status:t.status}))));
   localStorage.setItem('mb_acc_resolved', JSON.stringify(accResolved));
+  localStorage.setItem('mb_killed_ads', JSON.stringify(killedAds));
 }
 loadTokensFromStorage();
 
@@ -338,7 +341,23 @@ function loadCsv(input) {
     renderStats();
     await resolveAccounts();
     renderAccMap();
-    appendMsg('agent', `📊 Загружено **${csvData.length}** объявлений. Нашёл **${[...new Set(parseRows().map(r=>r.campaignId).filter(Boolean))].length}** уникальных аккаунтов. Можешь задавать команды!`);
+    const loadedAds = parseRows();
+    const campaigns = [...new Set(loadedAds.map(r=>r.campaignId).filter(Boolean))];
+
+    // Check if any killed ads now have conversions
+    const revivedAds = loadedAds.filter(r => r.id && killedAds[r.id] && r.conv > 0);
+    let msg = `📊 Загружено **${loadedAds.length}** объявлений. Нашёл **${campaigns.length}** уникальных аккаунтов.`;
+    if (revivedAds.length > 0) {
+      msg += `
+
+⚠️ **Внимание! Долетели конверсии по выключенным объявлениям:**
+`;
+      revivedAds.forEach(r => { msg += `▶ ID: ${r.id} — ${r.conv} конв., EPC $${(r.epc||0).toFixed(2)} — рекомендую включить
+`; });
+    } else {
+      msg += ` Можешь задавать команды!`;
+    }
+    appendMsg('agent', msg);
   }});
 }
 
@@ -479,8 +498,20 @@ ${statsText}
 [{"action":"pause","id":"AD_ID"},{"action":"enable","id":"AD_ID"}]
 \`\`\`
 
-Правила:
-- Объявления с conv > 0 НИКОГДА не выключай без явного разрешения
+Правила принятия решений по объявлениям (строго по порядку):
+
+1. Расход < $30 — НЕ ТРОГАТЬ, только пиши "мало данных"
+2. Есть конверсии (conv > 0) — ДЕРЖАТЬ ВСЕГДА без исключений
+3. CPC > $0.7 — выключать (дорогой клик)
+4. LP CPC > $5 — выключать (дорогой пробив на лендинг)
+5. Всё остальное (LP CTR, EPC, ROI и др.) — НЕ использовать как причину для выключения
+
+Память о выключенных объявлениях:
+- Веди список выключенных тобой объявлений в рамках сессии
+- Если при следующей загрузке CSV у выключенного объявления появилась конверсия — СРАЗУ сообщи пользователю что его нужно включить обратно
+- Формат: "⚠️ Объявление ID:xxx было выключено, но теперь есть конверсия — рекомендую включить"
+
+Общие правила:
 - Отвечай на русском, кратко и по делу
 - Форматируй числа красиво ($123, 45%)
 - Если у аккаунта нет токена — предупреди пользователя
@@ -516,6 +547,14 @@ async function executeActions(text) {
     const token = ad ? getTokenForAd(ad) : (tokens.find(t=>t.value&&t.status==='ok')?.value);
     const enable = a.action === 'enable';
     const res = await fbSetStatus(a.id, enable, token);
+    if (res.ok) {
+      if (!enable) {
+        killedAds[a.id] = { killedAt: new Date().toISOString(), campaignId: ad?.campaignId || null };
+      } else {
+        delete killedAds[a.id];
+      }
+      saveTokensToStorage();
+    }
     results.push(`${res.ok?'✅':'❌'} ${enable?'Включено':'Выключено'}: ${a.id}${res.error?' — '+res.error:''}`);
   }
   return results.join('\n');
