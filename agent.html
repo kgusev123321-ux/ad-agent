@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -21,15 +22,13 @@
 }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
 
-/* TOP BAR */
-.topbar { display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: var(--bg2); border-bottom: 0.5px solid var(--border); flex-shrink: 0; flex-wrap: wrap; }
-.topbar-title { font-size: 14px; font-weight: 600; color: var(--text); margin-right: 8px; white-space: nowrap; }
+.topbar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--bg2); border-bottom: 0.5px solid var(--border); flex-shrink: 0; flex-wrap: wrap; }
+.topbar-title { font-size: 14px; font-weight: 600; color: var(--text); margin-right: 4px; white-space: nowrap; }
 .topbar input { padding: 6px 10px; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); background: var(--bg3); color: var(--text); font-size: 12px; outline: none; font-family: 'SF Mono', monospace; }
 .topbar input:focus { border-color: var(--accent); }
-.topbar input.wide { width: 260px; }
-.topbar input.mid { width: 180px; }
+.topbar input.wide { width: 240px; }
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text3); flex-shrink: 0; }
-.status-dot.ok { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.status-dot.ok  { background: var(--green); box-shadow: 0 0 6px var(--green); }
 .status-dot.err { background: var(--red); }
 .tb-btn { padding: 6px 12px; font-size: 12px; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); background: transparent; color: var(--text2); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
 .tb-btn:hover { background: var(--bg3); color: var(--text); }
@@ -37,19 +36,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .tb-btn.primary:hover { background: var(--accent2); }
 .tb-sep { width: 0.5px; height: 20px; background: var(--border); flex-shrink: 0; }
 .tb-label { font-size: 11px; color: var(--text3); white-space: nowrap; }
+.tb-tokens-count { font-size: 11px; color: var(--green-text); background: var(--green-bg); padding: 3px 8px; border-radius: 10px; white-space: nowrap; }
 
-/* MAIN LAYOUT */
 .main { display: flex; flex: 1; overflow: hidden; }
 
-/* LEFT PANEL — STATS */
+/* LEFT */
 .left-panel { width: 300px; flex-shrink: 0; background: var(--bg2); border-right: 0.5px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
 .panel-header { padding: 12px 14px; border-bottom: 0.5px solid var(--border); font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
 .panel-header span { color: var(--text2); font-weight: 400; font-size: 11px; text-transform: none; letter-spacing: 0; }
-.upload-drop { margin: 12px; border: 1px dashed var(--border2); border-radius: var(--radius); padding: 20px 12px; text-align: center; cursor: pointer; transition: all 0.15s; }
-.upload-drop:hover { border-color: var(--accent); background: var(--bg3); }
-.upload-drop p { font-size: 12px; color: var(--text3); margin-top: 4px; }
-.upload-drop h4 { font-size: 13px; color: var(--text2); }
-
 .stats-scroll { flex: 1; overflow-y: auto; padding: 0 12px 12px; }
 .stat-card { background: var(--bg3); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; margin-bottom: 8px; }
 .stat-card .label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
@@ -61,65 +55,76 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .stat-mini { background: var(--bg3); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 8px 10px; }
 .stat-mini .label { font-size: 10px; color: var(--text3); margin-bottom: 2px; }
 .stat-mini .value { font-size: 15px; font-weight: 600; }
-
 .ads-list { margin-top: 4px; }
-.ad-row { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: var(--radius-sm); margin-bottom: 2px; background: var(--bg4); border: 0.5px solid var(--border); }
+.ad-row { display: flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: var(--radius-sm); margin-bottom: 2px; background: var(--bg4); border: 0.5px solid var(--border); }
 .ad-row .ad-id { font-size: 10px; font-family: 'SF Mono', monospace; color: var(--text2); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ad-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-.ad-dot.kill  { background: var(--red); }
-.ad-dot.keep  { background: var(--green); }
+.ad-dot.kill { background: var(--red); }
+.ad-dot.keep { background: var(--green); }
 .ad-dot.watch { background: var(--amber); }
-.ad-dot.off   { background: var(--text3); }
 .ad-epc { font-size: 10px; color: var(--text3); white-space: nowrap; }
+.ad-acc { font-size: 9px; color: var(--text3); font-family: 'SF Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60px; }
 .section-title { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin: 12px 0 6px; }
 
-/* RIGHT PANEL — CHAT */
+/* TOKENS MODAL */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; display: flex; align-items: center; justify-content: center; }
+.modal { background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 20px; width: 500px; max-width: 95vw; max-height: 80vh; display: flex; flex-direction: column; }
+.modal h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.modal p  { font-size: 12px; color: var(--text2); margin-bottom: 14px; line-height: 1.5; }
+.tokens-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; max-height: 340px; }
+.token-row-item { display: flex; gap: 8px; align-items: center; }
+.token-row-item input.tok-name { width: 110px; flex-shrink: 0; padding: 7px 10px; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); background: var(--bg3); color: var(--text); font-size: 12px; outline: none; }
+.token-row-item input.tok-val  { flex: 1; padding: 7px 10px; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); background: var(--bg3); color: var(--text); font-size: 12px; outline: none; font-family: 'SF Mono', monospace; }
+.token-row-item input:focus { border-color: var(--accent); }
+.token-row-item .tok-status { width: 8px; height: 8px; border-radius: 50%; background: var(--text3); flex-shrink: 0; }
+.token-row-item .tok-status.ok  { background: var(--green); box-shadow: 0 0 4px var(--green); }
+.token-row-item .tok-status.err { background: var(--red); }
+.token-row-item .tok-del { background: transparent; border: none; color: var(--text3); cursor: pointer; font-size: 16px; padding: 0 4px; transition: color 0.15s; }
+.token-row-item .tok-del:hover { color: var(--red); }
+.modal-btns { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.modal-btns .tb-btn { flex-shrink: 0; }
+.acc-map { background: var(--bg3); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; margin-bottom: 12px; font-size: 11px; color: var(--text2); max-height: 120px; overflow-y: auto; }
+.acc-map-row { display: flex; align-items: center; gap: 8px; padding: 3px 0; border-bottom: 0.5px solid var(--border); }
+.acc-map-row:last-child { border-bottom: none; }
+.acc-map-id { font-family: 'SF Mono', monospace; font-size: 10px; color: var(--text); flex: 1; }
+.acc-map-tok { font-size: 10px; color: var(--text3); }
+.acc-map-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+/* CHAT */
 .right-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--bg); }
 .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
 .msg { display: flex; gap: 10px; max-width: 100%; }
 .msg.user { flex-direction: row-reverse; }
-.msg-bubble { padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.6; max-width: 75%; }
-.msg.user .msg-bubble { background: var(--accent); color: #fff; border-radius: 14px 14px 4px 14px; }
+.msg-bubble { padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.6; max-width: 78%; }
+.msg.user  .msg-bubble { background: var(--accent); color: #fff; border-radius: 14px 14px 4px 14px; }
 .msg.agent .msg-bubble { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 14px 14px 14px 4px; color: var(--text); }
 .msg-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
 .msg.user  .msg-avatar { background: var(--accent2); }
 .msg.agent .msg-avatar { background: var(--bg3); border: 0.5px solid var(--border); }
-
-.action-log { background: var(--bg3); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 12px; color: var(--text2); font-family: 'SF Mono', monospace; margin-top: 4px; line-height: 1.6; }
+.action-log { background: var(--bg3); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 12px; color: var(--text2); font-family: 'SF Mono', monospace; margin-top: 4px; line-height: 1.8; }
 .action-log .ok   { color: var(--green-text); }
 .action-log .err  { color: var(--red-text); }
-.action-log .info { color: var(--blue-text); }
-
-.typing { display: flex; gap: 4px; align-items: center; padding: 12px 16px; }
+.typing { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
 .typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--text3); animation: bounce 1.2s infinite; }
 .typing span:nth-child(2) { animation-delay: 0.2s; }
 .typing span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
-
 .chat-input-area { padding: 12px 16px; background: var(--bg2); border-top: 0.5px solid var(--border); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
 .chat-input-area textarea { flex: 1; padding: 10px 14px; border: 0.5px solid var(--border2); border-radius: 20px; background: var(--bg3); color: var(--text); font-size: 14px; resize: none; outline: none; min-height: 42px; max-height: 120px; line-height: 1.5; font-family: inherit; transition: border-color 0.15s; }
 .chat-input-area textarea:focus { border-color: var(--accent); }
 .send-btn { width: 42px; height: 42px; border-radius: 50%; background: var(--accent); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: background 0.15s; flex-shrink: 0; }
 .send-btn:hover { background: var(--accent2); }
 .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
 .welcome { text-align: center; padding: 40px 20px; color: var(--text2); }
 .welcome h2 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .welcome p { font-size: 13px; line-height: 1.7; margin-bottom: 16px; }
 .examples { display: flex; flex-direction: column; gap: 6px; align-items: center; }
-.example-btn { padding: 8px 16px; border: 0.5px solid var(--border2); border-radius: 20px; background: var(--bg2); color: var(--text2); font-size: 13px; cursor: pointer; transition: all 0.15s; text-align: left; max-width: 400px; width: 100%; }
+.example-btn { padding: 8px 16px; border: 0.5px solid var(--border2); border-radius: 20px; background: var(--bg2); color: var(--text2); font-size: 13px; cursor: pointer; transition: all 0.15s; text-align: left; max-width: 420px; width: 100%; }
 .example-btn:hover { background: var(--bg3); color: var(--text); border-color: var(--accent); }
-
-.badge-sm { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; }
-.badge-sm.kill  { background: var(--red-bg);   color: var(--red-text); }
-.badge-sm.keep  { background: var(--green-bg); color: var(--green-text); }
-.badge-sm.watch { background: var(--amber-bg); color: var(--amber-text); }
-.badge-sm.off   { background: var(--gray-bg);  color: var(--gray-text); }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-title">⚡ Media Buyer Agent</div>
   <div class="tb-sep"></div>
@@ -127,40 +132,31 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   <input class="wide" type="password" id="claudeKey" placeholder="sk-ant-..." oninput="onKeyChange()">
   <div class="status-dot" id="claudeDot"></div>
   <div class="tb-sep"></div>
-  <div class="tb-label">FB Token</div>
-  <input class="mid" type="password" id="fbToken" placeholder="EAAxx..." oninput="onFbChange()">
-  <button class="tb-btn" onclick="checkFb()">Проверить</button>
-  <div class="status-dot" id="fbDot"></div>
+  <button class="tb-btn" onclick="openTokens()">🔑 FB Токены <span id="tokenCountBadge"></span></button>
   <div class="tb-sep"></div>
   <button class="tb-btn primary" onclick="document.getElementById('csvInput').click()">📂 CSV</button>
   <input type="file" id="csvInput" accept=".csv" style="display:none" onchange="loadCsv(this)">
 </div>
 
-<!-- MAIN -->
 <div class="main">
-
-  <!-- LEFT -->
   <div class="left-panel">
     <div class="panel-header">Статистика <span id="csvName">нет данных</span></div>
     <div class="stats-scroll" id="statsPanel">
-      <div style="padding:24px 12px; text-align:center; color:var(--text3); font-size:13px;">
-        Загрузи CSV из Кейтаро чтобы агент видел твои данные
-      </div>
+      <div style="padding:24px 12px; text-align:center; color:var(--text3); font-size:13px;">Загрузи CSV из Кейтаро</div>
     </div>
   </div>
 
-  <!-- RIGHT -->
   <div class="right-panel">
     <div class="chat-messages" id="chatMessages">
       <div class="welcome" id="welcome">
         <h2>Привет 👋</h2>
-        <p>Я твой медиабайер агент. Загрузи CSV из Кейтаро и вставь токены — я смогу анализировать твою статистику и управлять объявлениями через FB API.</p>
+        <p>Добавь FB токены, загрузи CSV и вставь Anthropic ключ — агент сам разберётся какой токен к какому аккаунту относится.</p>
         <div class="examples">
           <button class="example-btn" onclick="sendExample(this.textContent)">выключи все объявления с EPC ниже 1</button>
-          <button class="example-btn" onclick="sendExample(this.textContent)">покажи топ 5 объявлений по ROI</button>
-          <button class="example-btn" onclick="sendExample(this.textContent)">сколько сегодня потрачено суммарно</button>
+          <button class="example-btn" onclick="sendExample(this.textContent)">покажи топ 5 по ROI</button>
+          <button class="example-btn" onclick="sendExample(this.textContent)">сколько потрачено суммарно сегодня</button>
           <button class="example-btn" onclick="sendExample(this.textContent)">выключи всё кроме тех где есть конверсии</button>
-          <button class="example-btn" onclick="sendExample(this.textContent)">какие объявления стоит оставить на ночь</button>
+          <button class="example-btn" onclick="sendExample(this.textContent)">по каким аккаунтам есть токены?</button>
         </div>
       </div>
     </div>
@@ -169,101 +165,234 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
       <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
     </div>
   </div>
+</div>
 
+<!-- TOKENS MODAL -->
+<div class="modal-overlay" id="tokensModal" style="display:none" onclick="if(event.target===this)closeTokens()">
+  <div class="modal">
+    <h3>🔑 FB Токены</h3>
+    <p>Добавь токены своих аккаунтов. Название — любое для удобства. Агент сам определит какой токен к какому Campaign ID относится через FB API.</p>
+    <div class="tokens-list" id="tokensList"></div>
+    <div id="accMapBlock" style="display:none">
+      <div class="section-title" style="margin-top:0; margin-bottom:6px;">Привязка Campaign ID → токен</div>
+      <div class="acc-map" id="accMap"></div>
+    </div>
+    <div class="modal-btns">
+      <button class="tb-btn" onclick="addTokenRow()">+ Добавить токен</button>
+      <button class="tb-btn" onclick="checkAllTokens()">Проверить все</button>
+      <button class="tb-btn primary" onclick="closeTokens()">Готово</button>
+    </div>
+  </div>
 </div>
 
 <script>
 let csvData = [];
 let chatHistory = [];
-let fbValid = false;
+let tokens = []; // [{name, value, accountId, status}]
+let accToToken = {}; // campaignId -> tokenIndex
+let accResolved = {}; // accountId -> tokenIndex (resolved via FB API)
 
-// ─── TOKEN CHECKS ───────────────────────────────────────────────────────────
+function loadTokensFromStorage() {
+  try { tokens = JSON.parse(localStorage.getItem('mb_tokens') || '[]'); } catch(e) { tokens = []; }
+  try { accResolved = JSON.parse(localStorage.getItem('mb_acc_resolved') || '{}'); } catch(e) { accResolved = {}; }
+  updateTokenBadge();
+}
+function saveTokensToStorage() {
+  localStorage.setItem('mb_tokens', JSON.stringify(tokens.map(t => ({name:t.name, value:t.value, accountId:t.accountId, status:t.status}))));
+  localStorage.setItem('mb_acc_resolved', JSON.stringify(accResolved));
+}
+loadTokensFromStorage();
+
+// ─── KEY ────────────────────────────────────────────────────────────────────
 function onKeyChange() {
   const dot = document.getElementById('claudeDot');
-  dot.className = 'status-dot';
   const v = document.getElementById('claudeKey').value.trim();
-  if (v.startsWith('sk-ant-')) { dot.className = 'status-dot ok'; }
+  dot.className = v.startsWith('sk-ant-') ? 'status-dot ok' : 'status-dot';
 }
 
-function onFbChange() {
-  fbValid = false;
-  document.getElementById('fbDot').className = 'status-dot';
+// ─── TOKENS MODAL ────────────────────────────────────────────────────────────
+function openTokens() {
+  renderTokensList();
+  renderAccMap();
+  document.getElementById('tokensModal').style.display = 'flex';
+}
+function closeTokens() {
+  collectTokensFromUI();
+  saveTokensToStorage();
+  updateTokenBadge();
+  document.getElementById('tokensModal').style.display = 'none';
 }
 
-async function checkFb() {
-  const token = document.getElementById('fbToken').value.trim();
-  if (!token) return;
-  const dot = document.getElementById('fbDot');
-  dot.className = 'status-dot';
-  try {
-    const r = await fetch(`https://graph.facebook.com/v19.0/me?fields=id,name&access_token=${token}`);
-    const d = await r.json();
-    if (d.error) throw new Error(d.error.message);
-    fbValid = true;
-    dot.className = 'status-dot ok';
-    appendMsg('agent', `✅ FB токен валиден — аккаунт: **${d.name || d.id}**`);
-  } catch(e) {
-    dot.className = 'status-dot err';
-    appendMsg('agent', `❌ Ошибка FB токена: ${e.message}`);
+function renderTokensList() {
+  const list = document.getElementById('tokensList');
+  if (tokens.length === 0) tokens.push({name:'Акк 1', value:'', accountId:'', status:'idle'});
+  list.innerHTML = tokens.map((t,i) => `
+    <div class="token-row-item">
+      <input class="tok-name" type="text" placeholder="Название" value="${t.name||''}" data-i="${i}" data-field="name">
+      <input class="tok-val"  type="password" placeholder="EAAxx..." value="${t.value||''}" data-i="${i}" data-field="value">
+      <div class="tok-status ${t.status==='ok'?'ok':t.status==='err'?'err':''}" id="tokdot_${i}"></div>
+      <button class="tok-del" onclick="removeToken(${i})">×</button>
+    </div>
+  `).join('');
+}
+
+function collectTokensFromUI() {
+  document.querySelectorAll('.token-row-item').forEach(row => {
+    const i     = parseInt(row.querySelector('[data-field=name]').dataset.i);
+    const name  = row.querySelector('[data-field=name]').value.trim();
+    const value = row.querySelector('[data-field=value]').value.trim();
+    if (tokens[i]) { tokens[i].name = name; tokens[i].value = value; }
+  });
+  tokens = tokens.filter(t => t.value);
+}
+
+function addTokenRow() {
+  collectTokensFromUI();
+  tokens.push({name:`Акк ${tokens.length+1}`, value:'', accountId:'', status:'idle'});
+  renderTokensList();
+}
+
+function removeToken(i) {
+  collectTokensFromUI();
+  tokens.splice(i,1);
+  renderTokensList();
+}
+
+async function checkAllTokens() {
+  collectTokensFromUI();
+  for (let i = 0; i < tokens.length; i++) {
+    const t = tokens[i];
+    if (!t.value) continue;
+    const dot = document.getElementById(`tokdot_${i}`);
+    try {
+      const r = await fetch(`https://graph.facebook.com/v19.0/me/adaccounts?fields=id,name&limit=20&access_token=${t.value}`);
+      const d = await r.json();
+      if (d.error) throw new Error(d.error.message);
+      t.status = 'ok';
+      t.accountId = d.data && d.data[0] ? d.data[0].id : '';
+      t.accountIds = d.data ? d.data.map(a => a.id) : [];
+      if (dot) dot.className = 'tok-status ok';
+    } catch(e) {
+      t.status = 'err';
+      if (dot) dot.className = 'tok-status err';
+    }
+  }
+  saveTokensToStorage();
+  await resolveAccounts();
+  renderAccMap();
+}
+
+async function resolveAccounts() {
+  if (!csvData.length) return;
+  const ads = parseRows();
+  const campaignIds = [...new Set(ads.map(r=>r.campaignId).filter(Boolean))];
+
+  for (const campId of campaignIds) {
+    if (accResolved[campId] !== undefined) continue;
+    for (let i = 0; i < tokens.length; i++) {
+      const t = tokens[i];
+      if (!t.value || t.status !== 'ok') continue;
+      try {
+        const r = await fetch(`https://graph.facebook.com/v19.0/${campId}?fields=id,name,account_id&access_token=${t.value}`);
+        const d = await r.json();
+        if (!d.error && d.id) {
+          accResolved[campId] = i;
+          saveTokensToStorage();
+          break;
+        }
+      } catch(e) {}
+    }
   }
 }
 
-// ─── CSV LOAD ────────────────────────────────────────────────────────────────
+function renderAccMap() {
+  const ads = parseRows();
+  const campaignIds = [...new Set(ads.map(r=>r.campaignId).filter(Boolean))];
+  if (!campaignIds.length) { document.getElementById('accMapBlock').style.display='none'; return; }
+  document.getElementById('accMapBlock').style.display='block';
+  document.getElementById('accMap').innerHTML = campaignIds.map(cid => {
+    const idx = accResolved[cid];
+    const tok = idx !== undefined ? tokens[idx] : null;
+    const dotColor = tok ? (tok.status==='ok'?'var(--green)':'var(--red)') : 'var(--text3)';
+    return `<div class="acc-map-row">
+      <div class="acc-map-dot" style="background:${dotColor}"></div>
+      <div class="acc-map-id">${cid}</div>
+      <div class="acc-map-tok">${tok ? tok.name : 'не привязан'}</div>
+    </div>`;
+  }).join('');
+}
+
+function updateTokenBadge() {
+  const valid = tokens.filter(t=>t.value).length;
+  const badge = document.getElementById('tokenCountBadge');
+  badge.textContent = valid > 0 ? `(${valid})` : '';
+  badge.style.color = valid > 0 ? 'var(--green-text)' : '';
+}
+
+// ─── CSV ─────────────────────────────────────────────────────────────────────
 function loadCsv(input) {
-  const file = input.files[0];
-  if (!file) return;
+  const file = input.files[0]; if (!file) return;
   document.getElementById('csvName').textContent = file.name;
-  Papa.parse(file, {
-    header: true, skipEmptyLines: true,
-    complete: res => {
-      csvData = res.data;
-      renderStats();
-      appendMsg('agent', `📊 Загружено **${csvData.length}** объявлений из ${file.name}. Можешь задавать вопросы или давать команды.`);
-    }
-  });
+  Papa.parse(file, { header:true, skipEmptyLines:true, complete: async res => {
+    csvData = res.data;
+    renderStats();
+    await resolveAccounts();
+    renderAccMap();
+    appendMsg('agent', `📊 Загружено **${csvData.length}** объявлений. Нашёл **${[...new Set(parseRows().map(r=>r.campaignId).filter(Boolean))].length}** уникальных аккаунтов. Можешь задавать команды!`);
+  }});
 }
 
 function getVal(row, keys) {
   for (const k of keys) {
     const found = Object.keys(row).find(rk => rk.trim().toLowerCase().includes(k.toLowerCase()));
-    if (found && row[found] !== undefined && row[found] !== '') {
+    if (found && row[found]!==undefined && row[found]!=='') {
       const v = parseFloat(String(row[found]).replace(',','.').replace('%','').replace('$','').trim());
       if (!isNaN(v)) return v;
     }
   }
   return null;
 }
-
+function getStr(row, keys) {
+  for (const k of keys) {
+    const found = Object.keys(row).find(rk => rk.trim().toLowerCase().includes(k.toLowerCase()));
+    if (found && row[found]!==undefined && row[found]!=='') return String(row[found]).trim();
+  }
+  return null;
+}
 function getAdId(row) {
-  const found = Object.keys(row).find(k => k.trim().toLowerCase().includes('sub id 4') || k.trim() === 'Sub ID 4');
+  const found = Object.keys(row).find(k => k.trim().toLowerCase().includes('sub id 4') || k.trim()==='Sub ID 4');
+  return found ? String(row[found]).trim() : null;
+}
+function getCampaignId(row) {
+  const found = Object.keys(row).find(k => k.trim().toLowerCase().includes('campaign') || k.trim().toLowerCase().includes('кампани'));
   return found ? String(row[found]).trim() : null;
 }
 
 function parseRows() {
   return csvData.map(row => ({
-    id:     getAdId(row),
-    spend:  getVal(row, ['расход','spend','cost']),
-    cpc:    getVal(row, ['cpc','срс']),
-    lpctr:  getVal(row, ['lp ctr','lp ктр','кликабельност']),
-    lpcpc:  getVal(row, ['cpc offer','lp cpc','offer cpc']),
-    epc:    getVal(row, ['epc (все)','epc все','epc (all)','epc']),
-    conv:   getVal(row, ['конв','conv','leads','sales']),
-    roi:    getVal(row, ['roi']),
-    revenue:getVal(row, ['доход','revenue','income'])
+    id:         getAdId(row),
+    campaignId: getCampaignId(row),
+    spend:      getVal(row, ['расход','spend','cost']),
+    cpc:        getVal(row, ['cpc','срс']),
+    lpctr:      getVal(row, ['lp ctr','lp ктр','кликабельност']),
+    lpcpc:      getVal(row, ['cpc offer','lp cpc','offer cpc']),
+    epc:        getVal(row, ['epc (все)','epc все','epc (all)','epc']),
+    conv:       getVal(row, ['конв','conv','leads','sales']),
+    roi:        getVal(row, ['roi']),
+    revenue:    getVal(row, ['доход','revenue','income'])
   }));
 }
 
 function renderStats() {
   const ads = parseRows();
-  const totalSpend   = ads.reduce((s,r) => s + (r.spend||0), 0);
-  const totalRev     = ads.reduce((s,r) => s + (r.revenue||0), 0);
-  const totalConv    = ads.reduce((s,r) => s + (r.conv||0), 0);
-  const profit       = totalRev - totalSpend;
-  const roi          = totalSpend > 0 ? ((profit/totalSpend)*100) : 0;
-  const withConv     = ads.filter(r => r.conv && r.conv > 0).length;
-  const avgEpc       = ads.filter(r=>r.epc).reduce((s,r,_,a)=>s+r.epc/a.length,0);
-
-  const roiColor = roi > 0 ? 'green' : roi < 0 ? 'red' : 'amber';
+  const totalSpend = ads.reduce((s,r)=>s+(r.spend||0),0);
+  const totalRev   = ads.reduce((s,r)=>s+(r.revenue||0),0);
+  const totalConv  = ads.reduce((s,r)=>s+(r.conv||0),0);
+  const profit     = totalRev - totalSpend;
+  const roi        = totalSpend>0 ? (profit/totalSpend*100) : 0;
+  const avgEpc     = ads.filter(r=>r.epc).reduce((s,r,_,a)=>s+r.epc/a.length,0);
+  const campaigns  = [...new Set(ads.map(r=>r.campaignId).filter(Boolean))];
+  const roiColor   = roi>0?'green':roi<0?'red':'amber';
 
   document.getElementById('statsPanel').innerHTML = `
     <div class="stat-card" style="margin-top:12px">
@@ -276,106 +405,118 @@ function renderStats() {
       <div class="stat-mini"><div class="label">Профит</div><div class="value ${profit>=0?'green':'red'}">$${profit.toFixed(0)}</div></div>
       <div class="stat-mini"><div class="label">Конверсии</div><div class="value">${totalConv}</div></div>
       <div class="stat-mini"><div class="label">EPC avg</div><div class="value">$${avgEpc.toFixed(2)}</div></div>
-      <div class="stat-mini"><div class="label">С конв.</div><div class="value green">${withConv}</div></div>
+      <div class="stat-mini"><div class="label">Аккаунты</div><div class="value">${campaigns.length}</div></div>
     </div>
     <div class="section-title">Объявления (${ads.length})</div>
     <div class="ads-list">
-      ${ads.slice(0,30).map(r => {
-        const status = r.conv>0 ? 'keep' : r.epc>1 ? 'keep' : r.epc<0.5 ? 'kill' : 'watch';
+      ${ads.slice(0,40).map(r=>{
+        const status = r.conv>0?'keep':r.epc>1?'keep':r.epc<0.5?'kill':'watch';
+        const tokIdx = r.campaignId ? accResolved[r.campaignId] : undefined;
+        const tokName = tokIdx!==undefined && tokens[tokIdx] ? tokens[tokIdx].name : '';
         return `<div class="ad-row">
           <div class="ad-dot ${status}"></div>
-          <div class="ad-id">${r.id || '—'}</div>
+          <div class="ad-id">${r.id||'—'}</div>
           <div class="ad-epc">${r.epc!=null?'$'+r.epc.toFixed(2):'—'}</div>
+          ${tokName?`<div class="ad-acc">${tokName}</div>`:''}
         </div>`;
       }).join('')}
-      ${ads.length > 30 ? `<div style="font-size:11px;color:var(--text3);text-align:center;padding:8px">и ещё ${ads.length-30}...</div>` : ''}
+      ${ads.length>40?`<div style="font-size:11px;color:var(--text3);text-align:center;padding:8px">и ещё ${ads.length-40}...</div>`:''}
     </div>
   `;
 }
 
 // ─── FB API ──────────────────────────────────────────────────────────────────
-async function fbSetStatus(adId, enable) {
-  const token = document.getElementById('fbToken').value.trim();
-  if (!token) return { ok: false, error: 'нет токена' };
+function getTokenForAd(ad) {
+  if (ad.campaignId && accResolved[ad.campaignId] !== undefined) {
+    const tok = tokens[accResolved[ad.campaignId]];
+    if (tok && tok.value) return tok.value;
+  }
+  const valid = tokens.find(t => t.value && t.status === 'ok');
+  return valid ? valid.value : null;
+}
+
+async function fbSetStatus(adId, enable, token) {
+  if (!token) return { ok:false, error:'нет токена для этого аккаунта' };
   try {
     const r = await fetch(`https://graph.facebook.com/v19.0/${adId}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status: enable ? 'ACTIVE' : 'PAUSED', access_token: token })
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ status: enable?'ACTIVE':'PAUSED', access_token: token })
     });
     const d = await r.json();
     if (d.error) throw new Error(d.error.message);
-    return { ok: true };
-  } catch(e) { return { ok: false, error: e.message }; }
+    return {ok:true};
+  } catch(e) { return {ok:false, error:e.message}; }
 }
 
 // ─── CLAUDE API ──────────────────────────────────────────────────────────────
 function buildSystemPrompt() {
   const ads = parseRows();
-  const hasFb = !!document.getElementById('fbToken').value.trim();
+  const campaigns = [...new Set(ads.map(r=>r.campaignId).filter(Boolean))];
+  const tokenNames = tokens.filter(t=>t.value).map((t,i)=>t.name).join(', ');
+
+  const accMapText = campaigns.map(cid => {
+    const idx = accResolved[cid];
+    const name = idx!==undefined && tokens[idx] ? tokens[idx].name : 'без токена';
+    return `${cid} → ${name}`;
+  }).join('\n');
+
   const statsText = ads.length > 0 ? `
-Текущая статистика (${ads.length} объявлений):
-${ads.map(r => `ID:${r.id} spend:$${r.spend||0} epc:$${r.epc||0} conv:${r.conv||0} roi:${r.roi||0}% lpctr:${r.lpctr||0}% cpc:$${r.cpc||0} lpcpc:$${r.lpcpc||0}`).join('\n')}
+Объявления (${ads.length} шт):
+${ads.map(r=>`ID:${r.id} campaignID:${r.campaignId||'?'} spend:$${r.spend||0} epc:$${r.epc||0} conv:${r.conv||0} roi:${r.roi||0}% lpctr:${r.lpctr||0}% cpc:$${r.cpc||0}`).join('\n')}
+
+Привязка аккаунтов к токенам:
+${accMapText||'не определена — попроси пользователя нажать "Проверить все" в настройках токенов'}
+
+Доступные токены: ${tokenNames||'не добавлены'}
 ` : 'CSV не загружен.';
 
-  return `Ты медиабайер агент для арбитража трафика. Помогаешь управлять рекламными кампаниями в Facebook.
+  return `Ты медиабайер агент для арбитража трафика на Facebook. Помогаешь управлять рекламными кампаниями.
 
 ${statsText}
 
-FB API: ${hasFb ? 'доступен' : 'токен не введён'}.
-
-Когда нужно выполнить действие в Facebook (выключить/включить объявления) — верни JSON в конце сообщения в блоке \`\`\`actions:
+Когда нужно выполнить действие в Facebook — верни JSON в конце сообщения:
+\`\`\`actions
 [{"action":"pause","id":"AD_ID"},{"action":"enable","id":"AD_ID"}]
 \`\`\`
 
 Правила:
-- Объявления с конверсиями (conv > 0) НИКОГДА не выключай без явного разрешения пользователя
+- Объявления с conv > 0 НИКОГДА не выключай без явного разрешения
 - Отвечай на русском, кратко и по делу
-- Если данных нет — скажи что нужно загрузить CSV
 - Форматируй числа красиво ($123, 45%)
-- Когда выполняешь действия — перечисляй что именно делаешь`;
+- Если у аккаунта нет токена — предупреди пользователя
+- Когда выполняешь действия — пиши что именно делаешь и в каком аккаунте`;
 }
 
 async function callClaude(userMessage) {
   const key = document.getElementById('claudeKey').value.trim();
   if (!key) throw new Error('Вставь Anthropic API ключ');
-
-  chatHistory.push({ role: 'user', content: userMessage });
-
+  chatHistory.push({role:'user', content:userMessage});
   const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 1000,
-      system: buildSystemPrompt(),
-      messages: chatHistory
-    })
+    method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:1000, system:buildSystemPrompt(), messages:chatHistory })
   });
-
   const d = await r.json();
   if (d.error) throw new Error(d.error.message);
-  const text = d.content.map(c => c.text || '').join('');
-  chatHistory.push({ role: 'assistant', content: text });
+  const text = d.content.map(c=>c.text||'').join('');
+  chatHistory.push({role:'assistant', content:text});
   return text;
 }
 
-// ─── ACTIONS PARSER ──────────────────────────────────────────────────────────
 async function executeActions(text) {
   const match = text.match(/```actions\n([\s\S]*?)\n```/);
   if (!match) return null;
-  let actions;
-  try { actions = JSON.parse(match[1]); } catch(e) { return null; }
+  let actions; try { actions = JSON.parse(match[1]); } catch(e) { return null; }
   if (!actions || !actions.length) return null;
 
-  const token = document.getElementById('fbToken').value.trim();
-  if (!token) return `⚠️ FB токен не введён — действия не выполнены`;
-
+  const ads = parseRows();
   const results = [];
   for (const a of actions) {
+    const ad = ads.find(r => r.id === a.id);
+    const token = ad ? getTokenForAd(ad) : (tokens.find(t=>t.value&&t.status==='ok')?.value);
     const enable = a.action === 'enable';
-    const res = await fbSetStatus(a.id, enable);
-    results.push(`${res.ok ? '✅' : '❌'} ${enable ? 'Включено' : 'Выключено'}: ${a.id}${res.error ? ' — ' + res.error : ''}`);
+    const res = await fbSetStatus(a.id, enable, token);
+    results.push(`${res.ok?'✅':'❌'} ${enable?'Включено':'Выключено'}: ${a.id}${res.error?' — '+res.error:''}`);
   }
   return results.join('\n');
 }
@@ -384,24 +525,14 @@ async function executeActions(text) {
 function appendMsg(role, text) {
   const welcome = document.getElementById('welcome');
   if (welcome) welcome.remove();
-
   const container = document.getElementById('chatMessages');
   const div = document.createElement('div');
   div.className = `msg ${role}`;
-
-  const avatar = role === 'user' ? '👤' : '⚡';
-  const cleanText = text.replace(/```actions[\s\S]*?```/g, '').trim();
-  const html = cleanText
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n/g, '<br>');
-
-  div.innerHTML = `
-    <div class="msg-avatar">${avatar}</div>
-    <div class="msg-bubble">${html}</div>
-  `;
+  const cleanText = text.replace(/```actions[\s\S]*?```/g,'').trim();
+  const html = cleanText.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+  div.innerHTML = `<div class="msg-avatar">${role==='user'?'👤':'⚡'}</div><div class="msg-bubble">${html}</div>`;
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
-  return div;
 }
 
 function appendActionLog(logText) {
@@ -416,62 +547,31 @@ function appendActionLog(logText) {
 function showTyping() {
   const container = document.getElementById('chatMessages');
   const div = document.createElement('div');
-  div.className = 'msg agent';
-  div.id = 'typingIndicator';
-  div.innerHTML = `<div class="msg-avatar">⚡</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
+  div.className='msg agent'; div.id='typingIndicator';
+  div.innerHTML=`<div class="msg-avatar">⚡</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  container.appendChild(div); container.scrollTop=container.scrollHeight;
 }
-
-function removeTyping() {
-  const el = document.getElementById('typingIndicator');
-  if (el) el.remove();
-}
+function removeTyping() { const el=document.getElementById('typingIndicator'); if(el)el.remove(); }
 
 async function sendMessage() {
   const input = document.getElementById('chatInput');
-  const text  = input.value.trim();
-  if (!text) return;
-
-  input.value = '';
-  input.style.height = 'auto';
-  document.getElementById('sendBtn').disabled = true;
-
-  appendMsg('user', text);
-  showTyping();
-
+  const text = input.value.trim(); if (!text) return;
+  input.value=''; input.style.height='auto';
+  document.getElementById('sendBtn').disabled=true;
+  appendMsg('user', text); showTyping();
   try {
     const response = await callClaude(text);
-    removeTyping();
-    appendMsg('agent', response);
-
+    removeTyping(); appendMsg('agent', response);
     const actionLog = await executeActions(response);
-    if (actionLog) {
-      appendActionLog(actionLog);
-      if (csvData.length > 0) renderStats();
-    }
-  } catch(e) {
-    removeTyping();
-    appendMsg('agent', `❌ Ошибка: ${e.message}`);
-  }
-
-  document.getElementById('sendBtn').disabled = false;
+    if (actionLog) { appendActionLog(actionLog); if(csvData.length>0) renderStats(); }
+  } catch(e) { removeTyping(); appendMsg('agent', `❌ Ошибка: ${e.message}`); }
+  document.getElementById('sendBtn').disabled=false;
   input.focus();
 }
 
-function sendExample(text) {
-  document.getElementById('chatInput').value = text;
-  sendMessage();
-}
-
-function onKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-}
-
-function autoResize(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-}
+function sendExample(text) { document.getElementById('chatInput').value=text; sendMessage(); }
+function onKey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();} }
+function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; }
 </script>
 </body>
 </html>
